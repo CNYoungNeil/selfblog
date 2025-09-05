@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f9f9f9;
+    }
+    .contact-lead {
+      font-size: 1.2rem;
+      min-height: 2.2em; /* 保证高度不抖动 */
+    }
+    .type-caret {
+      border-right: .1em solid rgba(0,0,0,.35);
+      animation: caret 1s steps(1,end) infinite;
+    }
+    @keyframes caret {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <p id="contact-lead" class="contact-lead"></p>
+
+  <script>
+    const lines = [
+      "💬 Feel free to reach out — I reply fast.",
+      "👨‍💻 Open to internships / grad roles.",
+      "⚡ Web & cloud collab? Let’s build together.",
+      "📧 Say hi anytime: xiehaoyico@gmail.com"
+    ];
+
+    const el = document.getElementById("contact-lead");
+    let i = 0, j = 0, typing = true;
+
+    function tick() {
+      const text = lines[i];
+      if (typing) {
+        el.textContent = text.slice(0, ++j);
+        el.classList.add("type-caret");
+        if (j === text.length) {
+          typing = false;
+          setTimeout(tick, 1200); // 停留一会儿
+          return;
+        }
+      } else {
+        el.textContent = text.slice(0, --j);
+        if (j === 0) {
+          typing = true;
+          i = (i + 1) % lines.length;
+        }
+      }
+      setTimeout(tick, typing ? 45 : 25); // 打字 / 删除速度
+    }
+
+    tick();
+  </script>
+</body>
+</html>
