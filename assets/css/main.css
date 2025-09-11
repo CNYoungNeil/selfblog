@@ -3386,5 +3386,11 @@ body.is-touch .poptrox-popup .closer {
     margin: 1em auto;
   }
 
+  h3 .emphasis {
+    font-size: 1.2em;
+    color: #007acc;
+  }
+
+
 
 }
